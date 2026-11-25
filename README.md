@@ -15,6 +15,14 @@ npm run preview   # preview the production build
 
 `vite.config.js` sets `base: './'`, so you can deploy `dist/` as-is to Vercel, Netlify or a GitHub Pages sub-path.
 
+### Deploying to GitHub Pages
+
+`.github/workflows/deploy.yml` builds the site and publishes it on every push to `main`. You can also start it by hand from the **Actions** tab ("Run workflow").
+
+One-time setup: in the repository on GitHub, go to **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+
+The site is then published at `https://<user>.github.io/<repo>/`.
+
 ## Page structure
 
 | Section | Component | Highlights |
