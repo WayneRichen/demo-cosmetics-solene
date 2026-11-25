@@ -1,0 +1,122 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gallery__viewport {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--color-sand);
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.gallery__track {
+  display: flex;
+  height: 100%;
+  transition: transform 700ms var(--ease-out);
+}
+
+.gallery__track.is-dragging {
+  transition: none;
+}
+
+.gallery__slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.gallery__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.gallery__arrow {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(250, 247, 242, 0.82);
+  backdrop-filter: blur(6px);
+  transform: translateY(-50%);
+  opacity: 0;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out),
+    background var(--dur-fast);
+}
+
+.gallery__arrow:hover {
+  background: var(--color-ivory);
+}
+
+.gallery__arrow--prev {
+  left: 1rem;
+}
+
+.gallery__arrow--next {
+  right: 1rem;
+}
+
+.gallery__viewport:hover .gallery__arrow,
+.gallery__arrow:focus-visible {
+  opacity: 1;
+}
+
+.gallery__counter {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-espresso);
+}
+
+.gallery__counter span {
+  opacity: 0.55;
+}
+
+.gallery__thumbs {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.gallery__thumb {
+  flex: 0 1 84px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  opacity: 0.5;
+  outline-offset: 2px;
+  transition: opacity var(--dur) var(--ease-out);
+}
+
+.gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery__thumb:hover,
+.gallery__thumb.is-active {
+  opacity: 1;
+}
+
+.gallery__thumb.is-active {
+  outline: 1px solid var(--color-espresso);
+}
+
+/* touch devices: arrows always visible */
+@media (hover: none) {
+  .gallery__arrow {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+  }
+}

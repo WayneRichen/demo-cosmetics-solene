@@ -1,0 +1,260 @@
+.hero {
+  /* Hero image colour tone — the image file itself is ungraded.
+     Examples:
+       none                                              original photo
+       sepia(0.12) saturate(1.05)                        a touch warmer
+       brightness(1.05) saturate(0.9) sepia(0.15)        lighter & warmer */
+  --hero-filter: sepia(0.2) saturate(1.1) brightness(1.02);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: max(100svh, 640px);
+  padding-top: calc(var(--nav-height) + 34px);
+  padding-bottom: 4rem;
+  overflow: hidden;
+  background: var(--color-sand);
+}
+
+/* ---------- Image ---------- */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 1600ms var(--ease-in-out);
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% center;
+  filter: var(--hero-filter);
+  transform: scale(1.18);
+  transition: transform 2800ms var(--ease-out);
+}
+
+/* soft window light drifting over the wall */
+.hero__light {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(ellipse 40% 55% at 18% 30%, rgba(255, 246, 230, 0.55), transparent 70%),
+    linear-gradient(90deg, rgba(238, 230, 218, 0.55) 0%, rgba(238, 230, 218, 0.15) 45%, transparent 60%);
+  animation: light-drift 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes light-drift {
+  from { transform: translate3d(-2%, 0, 0); }
+  to { transform: translate3d(3%, 2%, 0); }
+}
+
+.hero.is-ready .hero__media {
+  clip-path: inset(0 0 0 0);
+}
+
+.hero.is-ready .hero__img {
+  transform: scale(1);
+}
+
+/* ---------- Copy ---------- */
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__copy {
+  max-width: 600px;
+}
+
+.hero__eyebrow,
+.hero__tagline,
+.hero__cta,
+.hero__features li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 1000ms var(--ease-out),
+    transform 1000ms var(--ease-out);
+}
+
+.hero__eyebrow { transition-delay: 150ms; }
+.hero__tagline { transition-delay: 700ms; }
+.hero__cta { transition-delay: 850ms; }
+.hero__features li { transition-delay: var(--d); }
+
+.hero__title {
+  margin: 1.5rem 0 1.75rem;
+  font-size: var(--fs-display);
+  line-height: 0.95;
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.hero__line > * {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1300ms var(--ease-out);
+  transition-delay: var(--d);
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--color-clay-dark);
+  padding-left: 0.6em;
+}
+
+.hero__tagline {
+  max-width: 26em;
+  font-size: var(--fs-md);
+  color: var(--color-bark);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.hero__cta .btn--ghost {
+  background: rgba(250, 247, 242, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.hero.is-ready .hero__line > * {
+  transform: none;
+}
+
+.hero.is-ready :is(.hero__eyebrow, .hero__tagline, .hero__cta, .hero__features li) {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Feature row ---------- */
+.hero__features {
+  display: flex;
+  margin-top: clamp(3rem, 9vh, 6.5rem);
+}
+
+.hero__features li {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-right: 1.75rem;
+  margin-right: 1.75rem;
+  border-right: 1px solid var(--color-line-strong);
+  font-size: var(--fs-xs);
+  color: var(--color-bark);
+}
+
+.hero__features li:last-child {
+  border-right: 0;
+}
+
+.hero__features strong {
+  display: block;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+}
+
+/* ---------- Scroll cue ---------- */
+.hero__scroll {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.hero__scroll i {
+  position: relative;
+  width: 1px;
+  height: 64px;
+  overflow: hidden;
+  background: var(--color-line-strong);
+}
+
+.hero__scroll i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-espresso);
+  animation: scroll-cue 2.2s var(--ease-in-out) infinite;
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1023px) {
+  .hero__features {
+    display: none;
+  }
+
+  .hero__light {
+    background:
+      linear-gradient(90deg, rgba(238, 230, 218, 0.7) 0%, rgba(238, 230, 218, 0.2) 55%, transparent 75%);
+  }
+}
+
+/* Phones & portrait tablets: image on top, copy below — keeps the bottle and the headline apart */
+@media (max-width: 720px), (max-width: 1023px) and (orientation: portrait) {
+  .hero {
+    --hero-mobile-bg: #e9dfd1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: auto;
+    padding-bottom: 3rem;
+    background: var(--hero-mobile-bg);
+  }
+
+  .hero__media {
+    inset: calc(var(--nav-height) + 34px) 0 auto;
+    height: 50svh;
+  }
+
+  .hero__img {
+    object-position: 79% center;
+  }
+
+  .hero__light {
+    inset: 0;
+    animation: none;
+    background: linear-gradient(0deg, var(--hero-mobile-bg) 0%, rgba(233, 223, 209, 0) 38%);
+  }
+
+  .hero__content {
+    padding-top: calc(50svh - 2rem);
+  }
+
+  .hero__title {
+    margin: 0.75rem 0 0.75rem;
+    font-size: clamp(3rem, 15vw, 4.25rem);
+  }
+
+  .hero__cta .btn {
+    flex: 1 1 auto;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+}

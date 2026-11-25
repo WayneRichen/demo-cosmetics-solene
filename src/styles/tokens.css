@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Design tokens — change the brand look from here.
+   ========================================================================== */
+:root {
+  /* Colour */
+  --color-cream: #f5efe6;        /* page background */
+  --color-ivory: #faf7f2;        /* raised surfaces, cards */
+  --color-sand: #e8dccb;         /* warm beige panels */
+  --color-sand-deep: #d9c7b0;
+  --color-clay: #a9825f;         /* accent: muted gold-brown */
+  --color-clay-dark: #8a6646;
+  --color-espresso: #3b2a20;     /* primary text / dark surfaces */
+  --color-bark: #5c4637;         /* secondary text */
+  --color-stone: #8b7b6d;        /* muted text */
+  --color-line: rgba(59, 42, 32, 0.14);
+  --color-line-strong: rgba(59, 42, 32, 0.28);
+  --color-overlay: rgba(38, 27, 20, 0.45);
+  --color-success: #5f7458;
+  --color-error: #a2503a;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+
+  --fs-xs: 0.75rem;     /* 12 */
+  --fs-sm: 0.875rem;    /* 14 */
+  --fs-base: 1rem;      /* 16 */
+  --fs-md: 1.125rem;    /* 18 */
+  --fs-lg: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --fs-xl: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+  --fs-2xl: clamp(2.75rem, 1.6rem + 4.4vw, 5.5rem);
+  --fs-display: clamp(3.25rem, 1.8rem + 6vw, 7.5rem);
+
+  --tracking-wide: 0.18em;
+  --tracking-wider: 0.28em;
+
+  /* Spacing & layout */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+  --section-space: clamp(5rem, 3rem + 8vw, 10rem);
+  --container: 1320px;
+  --nav-height: 76px;
+  --radius: 2px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 200ms;
+  --dur: 450ms;
+  --dur-slow: 900ms;
+
+  /* Elevation */
+  --shadow-soft: 0 20px 60px -30px rgba(59, 42, 32, 0.35);
+  --shadow-panel: -20px 0 60px -20px rgba(59, 42, 32, 0.25);
+
+  /* Layers */
+  --z-nav: 50;
+  --z-drawer: 80;
+  --z-modal: 90;
+  --z-toast: 100;
+}

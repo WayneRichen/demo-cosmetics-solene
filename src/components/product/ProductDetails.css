@@ -1,0 +1,260 @@
+.pdetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pdetails__name {
+  font-size: var(--fs-xl);
+}
+
+.pdetails__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--fs-sm);
+  color: var(--color-stone);
+}
+
+.pdetails__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-clay);
+}
+
+.pdetails__rating svg.is-filled {
+  fill: currentColor;
+}
+
+.pdetails__rating span {
+  margin-left: 0.4rem;
+  color: var(--color-espresso);
+}
+
+.pdetails__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.pdetails__price-value {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  animation: price-in 500ms var(--ease-out);
+}
+
+@keyframes price-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+.pdetails__size-note {
+  color: var(--color-stone);
+  font-size: var(--fs-sm);
+}
+
+.pdetails__desc {
+  color: var(--color-bark);
+}
+
+.pdetails__field {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pdetails__label {
+  margin-bottom: 0.75rem;
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.pdetails__sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pdetails__size {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 104px;
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--color-line-strong);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast),
+    background var(--dur-fast);
+}
+
+.pdetails__size input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pdetails__size span {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+}
+
+.pdetails__size small {
+  font-size: var(--fs-xs);
+  color: var(--color-stone);
+}
+
+.pdetails__size:hover {
+  border-color: var(--color-espresso);
+}
+
+.pdetails__size.is-active {
+  border-color: var(--color-espresso);
+  background: var(--color-espresso);
+  color: var(--color-ivory);
+}
+
+.pdetails__size.is-active small {
+  color: var(--color-sand-deep);
+}
+
+.pdetails__size:has(input:focus-visible) {
+  outline: 1px solid var(--color-clay);
+  outline-offset: 3px;
+}
+
+.pdetails__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pdetails__add {
+  flex: 1 1 240px;
+}
+
+/* quantity stepper */
+.qty {
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  border: 1px solid var(--color-line-strong);
+}
+
+.qty button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 100%;
+  transition: background var(--dur-fast);
+}
+
+.qty button:hover:not(:disabled) {
+  background: var(--color-sand);
+}
+
+.qty button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.qty output {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.pdetails__perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1rem;
+  border-block: 1px solid var(--color-line);
+  font-size: var(--fs-sm);
+  color: var(--color-bark);
+}
+
+.pdetails__perks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pdetails__perks svg {
+  color: var(--color-clay);
+}
+
+/* tabs */
+.ptabs__list {
+  display: flex;
+  gap: 1.75rem;
+  border-bottom: 1px solid var(--color-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ptabs__tab {
+  position: relative;
+  padding: 0.75rem 0;
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-stone);
+  transition: color var(--dur-fast);
+}
+
+.ptabs__tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--color-espresso);
+  transform: scaleX(0);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.ptabs__tab:hover,
+.ptabs__tab.is-active {
+  color: var(--color-espresso);
+}
+
+.ptabs__tab.is-active::after {
+  transform: scaleX(1);
+}
+
+.ptabs__panel {
+  padding-top: 1.25rem;
+  color: var(--color-bark);
+  animation: fade-up 500ms var(--ease-out);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+.ptabs__benefits li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.ptabs__benefits li + li {
+  margin-top: 0.4rem;
+}
+
+.ptabs__benefits li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--color-clay);
+}

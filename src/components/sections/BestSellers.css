@@ -1,0 +1,150 @@
+.bestsellers {
+  background: var(--color-ivory);
+}
+
+.bestsellers__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-bottom: 3rem;
+}
+
+.bestsellers__head .section-title {
+  margin-top: 1rem;
+}
+
+.bestsellers__intro {
+  max-width: 26em;
+  color: var(--color-bark);
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  position: relative;
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--color-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filters__btn {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  padding: 0.9rem 0;
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-stone);
+  transition: color var(--dur-fast);
+}
+
+.filters__btn sup {
+  font-size: 0.65em;
+  line-height: 1;
+}
+
+.filters__btn:hover,
+.filters__btn.is-active {
+  color: var(--color-espresso);
+}
+
+.filters__indicator {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--color-espresso);
+  transition:
+    transform 500ms var(--ease-out),
+    width 500ms var(--ease-out);
+}
+
+/* ---------- Grid ---------- */
+.bestsellers__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem clamp(1rem, 2vw, 2rem);
+  min-height: 420px;
+}
+
+/* The grid itself doesn't fade — it only flags (via useReveal) when it's in view,
+   then the cards stagger in. Re-mounting the grid on filter change replays this. */
+.bestsellers__grid[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.bestsellers__grid .pcard {
+  opacity: 0;
+}
+
+.bestsellers__grid.is-visible .pcard {
+  animation: card-in 800ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 90ms);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .bestsellers__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .bestsellers__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .bestsellers__grid {
+    gap: 2.5rem 0.75rem;
+  }
+
+  .bestsellers__grid .pcard__name {
+    font-size: 1.15rem;
+  }
+
+  .bestsellers__grid .pcard__tagline {
+    font-size: 0.62rem;
+  }
+
+  .bestsellers__grid .pcard__actions {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .bestsellers__grid .pcard__quick span,
+  .bestsellers__grid .pcard__quick {
+    font-size: 0;
+    flex: 0 0 44px;
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  .bestsellers__grid .pcard__actions {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,124 @@
+.journal {
+  background: var(--color-ivory);
+}
+
+.journal__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.journal__head .section-title {
+  margin-top: 1rem;
+}
+
+.journal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* middle card sits lower for an editorial rhythm */
+.journal__grid .jcard:nth-child(2) {
+  margin-top: 4rem;
+}
+
+.jcard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: default;
+}
+
+.jcard__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.75rem;
+  background: var(--color-sand);
+}
+
+.jcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1400ms var(--ease-out);
+}
+
+.jcard:hover .jcard__media img {
+  transform: scale(1.05);
+}
+
+.jcard__category {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.3rem 0.75rem;
+  background: rgba(250, 247, 242, 0.9);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.jcard__meta {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.jcard__title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.jcard__excerpt {
+  font-size: var(--fs-sm);
+  color: var(--color-bark);
+}
+
+.jcard__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.jcard__more svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.jcard:hover .jcard__more svg {
+  transform: translateX(5px);
+}
+
+@media (max-width: 900px) {
+  .journal__grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78%, 360px);
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .journal__grid .jcard {
+    scroll-snap-align: start;
+  }
+
+  .journal__grid .jcard:nth-child(2) {
+    margin-top: 0;
+  }
+}

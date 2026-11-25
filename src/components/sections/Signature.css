@@ -1,0 +1,35 @@
+.signature__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2.5rem, 1rem + 5vw, 7rem);
+  align-items: start;
+}
+
+.signature__gallery {
+  position: sticky;
+  top: calc(var(--nav-height) + 1.5rem);
+}
+
+.signature__eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+.signature__info .pdetails__name {
+  font-size: clamp(2.5rem, 1.8rem + 2.6vw, 4.25rem);
+  line-height: 1.02;
+}
+
+@media (max-width: 900px) {
+  .signature__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .signature__gallery {
+    position: static;
+  }
+}
+
+/* let grid children shrink below their content width (long button labels, tab rows) */
+.signature__grid > * {
+  min-width: 0;
+}
